@@ -13,7 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('products', function (Blueprint $table) {
+            $table->id(); // Primary key
+            $table->string('name'); // Nama produk
+            $table->text('description')->nullable(); // Deskripsi produk
+            $table->decimal('price', 10, 2); // Harga produk
+            $table->integer('stock')->default(0); // Jumlah stok
+            $table->timestamps(); // Kolom created_at dan updated_at
+        });
     }
 
     /**
@@ -23,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('products');
     }
 };
